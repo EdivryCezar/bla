@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Список пользователей</title>
+</head>
+<body>
+<h2>Список пользователей</h2>
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Имя</th>
+    <th>Фамилия</th>
+    <th>email</th>
+    <th>Username</th>
+    <th>Password</th>
+    <th>Операции</th>
+
+  </tr>
+  <th:block th:each="user : ${listUsers}">
+    <tr th:align=center>
+      <td th:text = "${user.getId()}"></td>
+      <td th:text = "${user.getName()}"></td>
+      <td th:text = "${user.getLastName()}"></td>
+      <td th:text = "${user.getEmail()}"></td>
+      <td th:text = "${user.getUsername()}"></td>
+      <td th:text = "${user.getPassword()}"></td>
+      <td><a th:href="@{/admin/edit_user(id=${user.getId()})}">Изменить</a>
+        <a th:href="@{/admin/delete_user(id=${user.getId()})}">Удалить</a>
+        <a th:href="@{/admin/info(id = ${user.getId()})}">Инфо</a></td>
+    </tr>
+  </th:block>
+</table>
+<br>
+<a th:href="@{/admin/create_user}">Добавить</a>
+<br>
+<br>
+<a th:href="@{/logout}">Выйти</a>
+<br>
+</body>
+</html>
