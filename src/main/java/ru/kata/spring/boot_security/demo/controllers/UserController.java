@@ -61,19 +61,19 @@ public class UserController {
 
     @GetMapping("/admin/edit_user")
     public String editUser (@RequestParam("id") long id, ModelMap model) {
-        model.addAttribute("user", service.getUser(id));
+        model.addAttribute("user", service.getUserById(id));
         return "admin/edit_user";
     }
     @PostMapping("/{id}")
     public String update (@ModelAttribute("user") User user,
                           @RequestParam("id") long id){
-        service.updateUser(id, user);
+        service.editUser(user);
         return "redirect:/admin";
     }
 
     @GetMapping("/admin/{id}")
     public String getById(@RequestParam("id") long id, ModelMap model) {
-        model.addAttribute("user", service.getUser(id));
+        model.addAttribute("user", service.getUserById(id));
         return "admin/info";
     }
 
