@@ -7,7 +7,7 @@
 </head>
 <body>
 <h2>Информация</h2>
-<form th:method="post" th:action="@{/static}" th:object="${user}">
+<form th:method="post" th:action="@{/admin}" th:object="${user}">
     <input type="hidden" th:field="*{id}"/>
     <p>
         <label for="name">Введите имя: </label>
@@ -29,6 +29,16 @@
         <label for="password">Введите password: </label>
         <input type="text" th:field="${user.password}" id="password"/>
     </p>
+    <tr>
+        <th><label>Select the role: </label></th>
+        <th>
+            <input type="checkbox" name="allRoles"
+                   th:each="role: ${roles}"
+                   th:text="${role.getRole()}"
+                   th:value="${role.id}"
+                   th:field="*{roles}">
+        </th>
+    </tr>
     <br>
     <input type="submit" value="Тык"/>
 </form>

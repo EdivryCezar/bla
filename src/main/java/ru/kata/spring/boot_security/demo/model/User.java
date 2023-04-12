@@ -142,15 +142,15 @@ public class User implements UserDetails {
 
     //хз чк
 
-    /*public String roleToString() {
+    public String roleToString() {
         StringBuilder stringBuilder = new StringBuilder();
         for (Role role : roles) {
-            stringBuilder.append(role.getRoleName()).append(" ");
+            stringBuilder.append(role.getRole()).append(" ");
         }
         return stringBuilder.toString();
     }
 
-    @Override
+   /* @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof User)) return false;

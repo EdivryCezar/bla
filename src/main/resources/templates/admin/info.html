@@ -28,6 +28,10 @@
   <th>Password</th>
   <td th:text="${user.password}"/>
   </tr>
+  <tr>
+    <th>Role</th>
+    <td th:text="${user.roleToString()}"/>
+  </tr>
 </table>
 <a th:href="@{/admin}">Показать список</a>
 <a th:href="@{/logout}">Выйти</a>

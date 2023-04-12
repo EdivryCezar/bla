@@ -1,6 +1,7 @@
 package ru.kata.spring.boot_security.demo.controllers;
 
 import ru.kata.spring.boot_security.demo.model.User;
+import ru.kata.spring.boot_security.demo.service.RoleServiceImp;
 import ru.kata.spring.boot_security.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -17,6 +19,7 @@ public class UserController {
 
     private List<User> users;
     private UserService service;
+    private RoleServiceImp roleService;
 
     @Autowired
     public UserController(UserService service) {
@@ -28,12 +31,19 @@ public class UserController {
         return "index";
     }
 
+
+
     @GetMapping(value = "/user")
+    public String user(Principal principal, ModelMap model) {
+        model.addAttribute("user", service.getUserByUsername(principal.getName()));
+        return "user";
+    }
+    /*@GetMapping(value = "/user")
     public String userPage(ModelMap model) {
         return "user";
     }
 
-    @GetMapping(value = "/admin")
+    /*@GetMapping(value = "/admin")
     public String printAllUsers(ModelMap model) {
         users = service.listUsers();
         model.addAttribute("listUsers", users);
@@ -44,6 +54,7 @@ public class UserController {
     public String createUser(ModelMap model) {
         User user = new User();
         model.addAttribute("user", user);
+        //model.addAttribute("roles", roleService.getAllRoles());
         return "admin/create_user";
     }
 
@@ -75,7 +86,7 @@ public class UserController {
     public String getById(@RequestParam("id") long id, ModelMap model) {
         model.addAttribute("user", service.getUserById(id));
         return "admin/info";
-    }
+    }*/
 
 /*
     @GetMapping("/{id}")

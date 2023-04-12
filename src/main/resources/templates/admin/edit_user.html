@@ -7,7 +7,7 @@
 <body>
 <h2>Редактирование</h2>
 
-<form th:method="post" th:action="@{/edit_user(id=${user.getId()})}" th:object="${user}">
+<form th:method="patch" th:action="@{/admin/edit_user(id=${user.getId()})}" th:object="${user}">
   <input type="hidden" th:field="*{id}"/>
   <p>
     <label for="name">Введите имя: </label>
@@ -21,6 +21,24 @@
     <label for="email">Введите email: </label>
     <input type="text" th:field="${user.email}" id="email"/>
   </p>
+  <p>
+    <label for="username">Введите username: </label>
+    <input type="text" th:field="${user.username}" id="username"/>
+  </p>
+  <p>
+    <label for="password">Введите password: </label>
+    <input type="text" th:field="${user.password}" id="password"/>
+  </p>
+  <tr>
+    <th><label>Select the role: </label></th>
+    <th>
+      <input type="checkbox" name="allRoles"
+             th:each="role: ${roles}"
+             th:text="${role.getRole()}"
+             th:value="${role.id}"
+             th:field="*{roles}">
+    </th>
+  </tr>
   <br>
   <input type="submit" value="Сохранить изменения"/>
 </form>

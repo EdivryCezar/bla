@@ -20,14 +20,8 @@ public class UserServiceImp implements UserService, UserDetailsService {
 
     private final PasswordEncoder passwordEncoder;
 
-
-    /*public UserServiseImpl(UserRepo userRepo, @Lazy PasswordEncoder passwordEncoder) {
-        this.userRepo = userRepo;
-        this.passwordEncoder = passwordEncoder;
-    }
-    */
     @Autowired
-    public UserServiceImp(UserRepo userRepo, PasswordEncoder passwordEncoder) {
+    public UserServiceImp(UserRepo userRepo, @Lazy PasswordEncoder passwordEncoder) {
         this.userRepo = userRepo;
         this.passwordEncoder = passwordEncoder;
     }
@@ -83,54 +77,4 @@ public class UserServiceImp implements UserService, UserDetailsService {
         return new org.springframework.security.core.userdetails.User(user.getUsername()
                 , user.getPassword(), user.getAuthorities());
     }
-   /* private final UserDao userDao;
-
-    @Autowired
-    public UserServiceImp (UserDao userDao) {
-        this.userDao = userDao;
-    }
-
-    @Transactional
-    @Override
-    public void addUser(User user) {
-        userDao.addUser(user);
-    }
-
-    @Transactional//(readOnly = true)
-    @Override
-    public List<User> listUsers() {
-        return userDao.listUsers();
-    }
-
-    @Transactional
-    @Override
-    public User getUser(long id) {
-        return userDao.getUser(id);
-    }
-
-    @Transactional
-    @Override
-    public void deleteUser(long id) {
-        userDao.deleteUser(id);
-    }
-
-    @Transactional
-    @Override
-    public void updateUser(long id, User user) {
-        userDao.updateUser(id, user);
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = getUserByUsername(username);
-        if (user == null) {
-            throw new UsernameNotFoundException(String.format("User '%s' not found", username));
-        }
-        return new org.springframework.security.core.userdetails.User(user.getUsername()
-                , user.getPassword(), user.getAuthorities());
-    }
-
-    private User getUserByUsername(String username) {
-        return userDao.findByUsername(username);
-    }*/
 }
