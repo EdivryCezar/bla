@@ -11,6 +11,8 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -150,20 +152,16 @@ public class User implements UserDetails {
         return stringBuilder.toString();
     }
 
-   /* @Override
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof User)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return getId().equals(user.getId())
-                && getUsername().equals(user.getUsername())
-                && getPassword().equals(user.getPassword())
-                && getEmail().equals(user.getEmail())
-                && getRoles().equals(user.getRoles());
+        return id == user.id && name.equals(user.name) && lastName.equals(user.lastName) && email.equals(user.email) && username.equals(user.username) && password.equals(user.password) && roles.equals(user.roles);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getUsername(), getPassword(), getEmail(), getRoles());
-    }*/
+        return Objects.hash(id, name, lastName, email, username, password, roles);
+    }
 }

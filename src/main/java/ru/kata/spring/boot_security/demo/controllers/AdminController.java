@@ -13,8 +13,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-    private List<User> users;
-
     private final UserServiceImp userService;
     private final RoleServiceImp roleService;
 
@@ -31,7 +29,7 @@ public class AdminController {
     //вывод
     @GetMapping(value = "")
     public String printAllUsers(ModelMap model) {
-        users = userService.listUsers();
+        List<User> users = userService.listUsers();
         model.addAttribute("listUsers", users);
         return "admin";
     }
